@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\include{latex_env}
+\usepackage{enumitem}
+\renewcommand{\labelenumi}{\alph{enumi}.}
+
+\rhead{Worksheet Two}
+
+\begin{document}
+
+{\bf Names}:\\
+
+
+Before you begin you should have read through Lab 2. We use the notation $T^\prime(t_i) = dT/dt|_i$.
+
+\noindent{\bf All questions should be done by hand (not by computer). Show your steps!}
+
+\textbf{1. Error terms in the backwards Euler} \\
+The forwards difference formula, $T^\prime(t_i) \approx \frac{T(t_{i+1})-T(t_i)}{\Delta t}$  can be re-arranged to give the forwards Euler scheme (to calculate values at future times): $$T(t_{i+1}) \approx T(t_{i}) + \Delta t T^\prime(t_i)$$ The use of $\approx$ shows that this is not an exact identity. Indeed, terms have been missed out, and in the lab, it gives an example of expanding $T(t_{i+1}) = T(t_i + \Delta t)$ using Taylor expansion:
+$$T(t_{i+1}) = T(t_i + \Delta t) = T(t_i) + \Delta t T'(t_i) + \frac{1}{2} (\Delta t)^2 T''(t_i) + ...$$
+The first two terms on the right look like those in our forwards Euler scheme for $T(t_{i+1})$, and so the first missing term in our scheme is $\frac{1}{2}(\Delta t)^2 T^{\prime\prime}(t_i)$, which is $\mathcal{O}(\Delta t^2$), or second order. 
+
+This question takes you through the backwards Euler scheme in a similar way, and compares the backwards and forwards methods.
+\begin{enumerate}[nosep]
+\item Expand $T(t_{i-1}) = T(t_i - \Delta t)$ using Taylor expansion
+\vspace{0.5in}
+
+\item Rearrange your equation to derive the leading order error term for the backwards Euler method: $T(t_{i}) \approx T(t_{i-1}) + \Delta t T^\prime(t_i)$. What is the order of accuracy of this method? 
+\vspace{0.6in}
+
+\item How does the leading order error term differ between the backwards and forwards Euler methods? What does this tell you about the sign ($<$ or $>$ 0) of the truncation error for the two schemes?
+\vspace{0.3in}
+
+\item In the lab, we use the forwards and backwards Euler methods to solve the heat conduction problem $T'(t) = \lambda(T-T_a)$, where $\lambda$ is a constant. For the scenario where $\lambda < 0$, and $T < T_a$, calculate the signs of:
+\begin{itemize}
+    \item $\Delta t T'(t_i)$:
+    \item $\frac{1}{2} (\Delta t)^2 T''(t_i)$:
+    \item truncation error for the forwards Euler:
+    \item truncation error for the backwards Euler:
+\end{itemize}
+
+\item In the figure below, which shows the exact solution for $\lambda = -0.8$, $T(t=0) = 20$ and $T_a = 30$, plot (qualitatively) what the forwards and backwards Euler solutions might look like (and label your lines).
+
+\begin{figure}[h!]
+\includegraphics[height=7cm,width=7cm,trim={0cm 0cm 0cm 0},clip]{Lab2_Fig1.3.png}
+\end{figure}
+\end{enumerate}
+\textbf{2. Backwards Euler for $y = sin(\lambda t)$}  \\
+For the equation $y = sin(\lambda t)$:
+\begin{enumerate}[nosep]
+\item Derive $y'(t)$ (== $dy/dt$):
+\vspace{0.1in}
+\item Derive $y''(t)$ (== $d^2y/dt^2$):
+\vspace{0.1in}
+\item Write down the backwards difference formula for $y'(t_i)$.
+\vspace{0.6in}
+\item What is the leading order error term for the backwards Euler scheme for this equation? What can you say about the sign of the truncation error in this example? Can you say anything about the sign of the global error?
+\vspace{0.7in}
+\item Using the approximation $sin(\alpha - \beta) \approx sin(\alpha) - \beta cos(\alpha)$ (which holds for $\alpha \ll 1$ or $\beta \ll 1$) show that the backwards difference formula you found in part c is consistent with the analytical solution (if the approximation holds).
+\vspace{1.3in}
+\item Given the approximation holds for $\alpha \ll 1$ or $\beta \ll 1$, under what conditions (values of $t$, $\Delta t$, $\lambda$) will the backwards Euler scheme be most accurate?
+\end{enumerate}
+
+\end{document}

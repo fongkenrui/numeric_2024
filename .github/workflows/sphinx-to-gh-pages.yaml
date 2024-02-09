@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Conda environment with Micromamba
-        uses: mamba-org/setup-micromamba@e820223f89c8720d6c740ca154a7adf32fcd278a
+        uses: mamba-org/setup-micromamba@8767fb704bd78032e9392f0386bf46950bdd1194
         with:
            environment-file: envs/environment-gh-pages.yaml
            environment-name: numeric-gh-pages
@@ -32,8 +32,9 @@ jobs:
            cache-environment-key: environment-${{ steps.date.outputs.date }}
 
       - name: Sphinx build and deploy
-        uses: uibcdf/action-sphinx-docs-to-gh-pages@v1.0-beta.2
+        uses: uibcdf/action-sphinx-docs-to-gh-pages@ae149a8d88b6b7ce5139a49112140048861a04c5
         with:
           branch: main
           dir_docs: website
-          sphinxopts: ''
+          sphinx-apidoc: 'false'
+          sphinx-opts: ''
