@@ -105,6 +105,7 @@ and unsatisfactory grades you have from the 7 exercises:
 2 'Unsatisfactory' submissions: 60%
 3 'Unsatisfactory' submissions: 50%
 4 or more 'Unsatisfactory' submissions: 0%:
+[1]_
 
 Quizzes are done online, reflect the learning objectives of each lab
 and are assigned to ensure you do the reading with enough depth to
@@ -255,4 +256,7 @@ expect:
 • The other instructor will substitute
 • Your TA may help run a class
 • We may have a synchronous online session or two. If this happens, you will receive an email.
+
+.. [1]
+   For assignments with a late penalty, we will consider grades of >=85% as Excellent, 60-85\% as Satisfactory, and below 60% as Unsatisfactory.
 

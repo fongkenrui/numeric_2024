@@ -113,7 +113,7 @@ and unsatisfactory grades you have from the 6 exercises:
 2 'Unsatisfactory' submissions: 60%
 3 'Unsatisfactory' submissions: 50%
 4 or more 'Unsatisfactory' submissions: 0%:
-
+[2]_
 
 The two mini-projects are longer assignments and slightly open-ended.
 These mini-projects can be worked with partners or alone.  Each
@@ -154,7 +154,7 @@ covered in the quizzes.
 
    -  Estimate: 8 hours
 
-   -  Quiz #1 Objectives [2]_ pertaining to Lab 1
+   -  Quiz #1 Objectives [3]_ pertaining to Lab 1
 
    -  Assignment: See web.
 
@@ -292,4 +292,7 @@ assignment to failing the course.
    not have PDE’s do Lab 6
 
 .. [2]
+   For assignments with a late penalty, we will consider grades of >=85% as Excellent, 60-85\% as Satisfactory, and below 60% as Unsatisfactory.
+
+.. [3]
    Objectives is an older term for Learning Goals
