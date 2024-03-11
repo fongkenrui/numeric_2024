@@ -163,7 +163,7 @@ def make_graph(u, h, dt, n_time):
 
     # Only try to plot 20 lines, so choose an interval if more than that (i.e. plot
     # every interval lines
-    interval = np.int(np.ceil(n_time/20))
+    interval = int(np.ceil(n_time/20))
 
     # Do the main plot
     for time in range(0, n_time, interval):
