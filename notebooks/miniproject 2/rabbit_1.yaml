@@ -1,25 +1,29 @@
 timevars:
-  dt: 0.1
+  dt: 0.05
   tstart: 0.0
-  tend: 50.0
+  tend: 400.0
 uservars:
   albedo_white: 0.75
-  albedo_black: 0.25
-  albedo_ground: 0.5
-  chi: 0.3
+  chi0: 0.1
   S0: 3668.0
-  L: 1.0
-  R: 0.01
+  L: 0.95
+  albedo_black: 0.25
+  R: 0.12
+  albedo_ground: 0.5
+  betarabbit: 1.0
+  chirabbit: 0.5
+  epsrabbit: 0.7
 initvars:
-  whiteconc: 0.4
+  whiteconc: 0.3
   blackconc: 0.1
+  rabbitconc: 0.0
 adaptvars:
   dtpassmin: 0.1
   dtpassmax: 5.0
   dtfailmax: 0.5
   dtfailmin: 0.1
   s: 0.9
-  rtol: 1.0e-05
-  atol: 1.0e-05
+  rtol: 1.0e-04
+  atol: 1.0e-04
   maxsteps: 2000.0
   maxfail: 60.0

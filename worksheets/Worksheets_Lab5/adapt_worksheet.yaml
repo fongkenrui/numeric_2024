@@ -19,8 +19,8 @@ adaptvars:
   dtfailmax: 0.5
   dtfailmin: 0.1
   s: 0.9
-  rtol: 1.0e-2
-  atol: 1.0e-2
+  rtol: 1.0e-5
+  atol: 1.0e-5
   maxsteps: 2000.0
   maxfail: 60.0
   dtpassmax: 5.0
