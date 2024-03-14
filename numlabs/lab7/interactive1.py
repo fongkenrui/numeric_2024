@@ -38,7 +38,7 @@ def interactive1(grid, ngrid, dt, T, small=False):  # return eta
     x, y, spatial = findforcing(L, dx, ngrid)
 
 # set up temporal scale T is total run time
-    ntime = np.int(T/dt)
+    ntime = int(T/dt)
 
 # initialize
     u, v, eta, up, vp, etap = initial(ngrid)
