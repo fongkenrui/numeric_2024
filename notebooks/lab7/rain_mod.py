@@ -130,7 +130,8 @@ def boundary_conditions(u_array, h_array, n_grid):
     """
     # Dirichlet BCs
     u_array[0] = 0 
-    u_array[n_grid - 1] = 0
+    u_array[n_grid - 2] = 0 
+    # u = 0 boundary point needs to be in-between h_n-1 and h_n neumann condition
     # Neumann BCs
     h_array[0] = h_array[1]
     h_array[n_grid-1] = h_array[n_grid-2]
@@ -142,29 +143,30 @@ def first_time_step(u, h, g, H, dt, dx, ho, gu, gh, n_grid, setting='general'):
     """
     if setting == 'point':
         u.now[1:n_grid - 1] = 0
-        factor = gu * ho / 2
+        factor = gu * ho 
         midpoint = n_grid // 2
         u.now[midpoint - 1] = -factor
-        u.now[midpoint + 1] = factor
+        u.now[midpoint] = factor
         h.now[1:n_grid - 1] = 0
-        h.now[midpoint] = ho - g * H * ho * dt ** 2 / (4 * dx ** 2)
+        h.now[midpoint] = ho - g * H * ho * dt ** 2 / (dx ** 2)
 
     elif setting == 'general':
         # Calculate predicted u, h
         u1 = np.zeros(n_grid)
         h1 = np.zeros(n_grid)
-        u1[1:n_grid - 1] = u.prev[1:n_grid - 1] - (gu/2) * (h.prev[2:n_grid] - h.prev[:n_grid - 2])
-        h1[1:n_grid - 1] = h.prev[1:n_grid - 1] - (gh/2) * (u.prev[2:n_grid] - u.prev[:n_grid - 2])
+        # Spatial second derivatives for staggered grid same as the leap-frog equations
+        u1[1:n_grid - 1] = u.prev[1:n_grid - 1] - gu * (h.prev[2:n_grid] - h.prev[1:n_grid - 1])
+        h1[1:n_grid - 1] = h.prev[1:n_grid - 1] - gh * (u.prev[1:n_grid - 1] - u.prev[:n_grid - 2])
         h1[0] = h1[1]
         h1[-1] = h1[-2]
         # Average to find u, h at dt/2
         u05 = 0.5*(u.prev + u1)
         h05 = 0.5*(h.prev + h1)
-        # Centre-difference corrector scheme 
-        u.now[1:n_grid - 1] = u.prev[1:n_grid - 1] - (gu/2) * (h05[2:n_grid] - h05[:n_grid - 2])
-        h.now[1:n_grid - 1] = h.prev[1:n_grid - 1] - (gh/2) * (u05[2:n_grid] - u05[:n_grid - 2])
+        # Staggered entre-difference corrector scheme with half-step dx/2
+        u.now[1:n_grid - 1] = u.prev[1:n_grid - 1] - gu * (h05[2:n_grid] - h05[1:n_grid - 1])
+        h.now[1:n_grid - 1] = h.prev[1:n_grid - 1] - gh * (u05[1:n_grid - 1] - u05[:n_grid - 2])
         u.now[0] = 0
-        u.now[-1] = 0
+        u.now[-2] = 0 # Same as in boudary_conditions
         h.now[0] = h.now[1]
         h.now[-1] = h.now[-2]
 
@@ -182,9 +184,7 @@ def leap_frog(u, h, gu, gh, n_grid):
     h.next[1:n_grid - 1] = (h.prev[1:n_grid - 1]
                             - 2*gh * (u.now[1:n_grid - 1] - u.now[:n_grid - 2]))
 
-                            # Not sure if reflection at boundaries is well-handled?
 
-                            
 
 
 def make_graph(u, h, dt, n_time):
